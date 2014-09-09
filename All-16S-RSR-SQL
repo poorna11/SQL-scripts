@@ -1,0 +1,12 @@
+# This file contains an SQL script to list all 16S rRNA structures from equivalence class of E.coli (NR 4.0_81883.31)
+select
+distinct(C.unit_id),  C.pdb, Q.real_space_r as 'RSR' from nt_quality as Q
+join pdb_unit_id_correspondence as C
+on
+  Q.unit_id = C.unit_id
+join nr_pdbs as N
+on 
+C.pdb = N.id
+where
+  N.class_id = 'NR_4.0_81883.31'
+and Q.real_space_r >0
